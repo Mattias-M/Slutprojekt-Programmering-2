@@ -1,0 +1,15 @@
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\bin\Debug\Endless runing.exe.config
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\bin\Debug\Endless runing.exe
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\bin\Debug\Endless runing.pdb
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\obj\Debug\Endless runing.csprojAssemblyReference.cache
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\obj\Debug\MainWindow.g.cs
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\obj\Debug\App.g.cs
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\obj\Debug\Endless runing_MarkupCompile.cache
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\obj\Debug\Endless runing_MarkupCompile.lref
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\obj\Debug\MainWindow.baml
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\obj\Debug\Endless runing.g.resources
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\obj\Debug\Endless_runing.Properties.Resources.resources
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\obj\Debug\Endless runing.csproj.GenerateResource.cache
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\obj\Debug\Endless runing.csproj.CoreCompileInputs.cache
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\obj\Debug\Endless runing.exe
+C:\Users\Elev\Documents\GitHub\Slutprojekt-Programmering-2\Endless runing\Endless runing\obj\Debug\Endless runing.pdb
