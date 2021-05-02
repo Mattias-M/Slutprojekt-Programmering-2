@@ -29,6 +29,7 @@ namespace Endless_runing
 
         Rect playerHitBox;
         Rect groundHitBox;
+        Rect obstacleHitBox;
 
         bool jumping;
 
@@ -76,8 +77,99 @@ namespace Endless_runing
         private void GameEngine(object sender, EventArgs e)
         {
 
-            Canvas.SetLeft(background, Canvas.GetLeft(background) - 3);
-            Canvas.SetLeft(background2, Canvas.GetLeft(background2) - 3);
+            Canvas.SetLeft(background, Canvas.GetLeft(background) - 5);
+            Canvas.SetLeft(background2, Canvas.GetLeft(background2) - 5);
+
+            if (Canvas.GetLeft(background) < -1262)
+            {
+                Canvas.SetLeft(background, Canvas.GetLeft(background2) + background2.Width);
+            }
+
+            if (Canvas.GetLeft(background2) < -1262)
+            {
+                Canvas.SetLeft(background2, Canvas.GetLeft(background) + background.Width);
+            }
+
+            Canvas.SetTop(player, Canvas.GetTop(player) + speed);
+
+            Canvas.SetLeft(obstacle, Canvas.GetLeft(obstacle) - 12);
+
+            ScoreText.Content = "Score: " + score;
+
+            playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width - 15, player.Height);
+            obstacleHitBox = new Rect(Canvas.GetLeft(obstacle), Canvas.GetTop(obstacle), obstacle.Width - 15, obstacle.Height);
+            groundHitBox = new Rect(Canvas.GetLeft(ground), Canvas.GetTop(ground), ground.Width - 15, ground.Height);
+
+            if (playerHitBox.IntersectsWith(groundHitBox))
+            {
+                speed = 0;
+
+                Canvas.SetTop(player, Canvas.GetTop(ground) - player.Height);
+
+                jumping = false;
+
+                spriteIndex += .5;
+
+                if (spriteIndex > 8)
+                {
+                    spriteIndex = 1;
+
+                }
+
+                RunSprits(spriteIndex);
+
+            }
+
+            if (jumping == true)
+
+            {
+                speed = -9;
+
+                force -= 1;
+            }
+            else
+            {
+                speed = 12;
+            }
+
+            if (force < 0)
+            {
+                jumping = false;
+            }
+
+            if (Canvas.GetLeft(obstacle) < -50)
+            {
+                Canvas.SetLeft(obstacle, 950);
+
+                Canvas.SetTop(obstacle, obstacalePostive[rnd.Next(0, obstacalePostive.Length)]);
+
+                score += 1;
+            }
+
+            if (playerHitBox.IntersectsWith(obstacleHitBox))
+            {
+                gameOver = true;
+
+                gameTimer.Stop();
+            }
+
+            if (gameOver == true)
+            {
+
+                obstacle.Stroke = Brushes.Black;
+                obstacle.StrokeThickness = 1;
+
+                player.Stroke = Brushes.Red;
+                player.StrokeThickness = 1;
+
+                ScoreText.Content = "Score: " + score + "press ENTER to play again";
+
+            }
+            else
+            {
+                player.StrokeThickness = 0;
+                obstacle.StrokeThickness = 0;
+            }
 
         }
 
@@ -92,7 +184,7 @@ namespace Endless_runing
 
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Space && jumping == true && Canvas.GetTop(player) > 260)
+            if (e.Key == Key.Space && jumping == false && Canvas.GetTop(player) > 260)
             {
                 jumping = true;
                 force = 15;

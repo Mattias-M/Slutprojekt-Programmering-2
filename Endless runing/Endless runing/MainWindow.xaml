@@ -13,7 +13,7 @@
 
         <Rectangle Name="background2" Height="400" Width="1262" Fill="LightGreen" Canvas.Left="1262" />
 
-        <Rectangle Name="Ground" Height="32" Width="792" Fill="Black" Canvas.Top="387" Canvas.Left="0"/>
+        <Rectangle Name="ground" Height="32" Width="792" Fill="Black" Canvas.Top="387" Canvas.Left="0"/>
 
         <Rectangle Name="player" Height="99" Width="67" Fill="Brown" Canvas.Top="151" Canvas.Left="110"/>
 
