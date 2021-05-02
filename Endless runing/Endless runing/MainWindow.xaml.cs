@@ -63,7 +63,7 @@ namespace Endless_runing
             gameTimer.Interval = TimeSpan.FromMilliseconds(20);
 
             
-            backgrundSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,image/background.gif"));
+            backgrundSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/background.gif"));
 
             background.Fill = backgrundSprite;
             background2.Fill = backgrundSprite;
@@ -75,17 +75,31 @@ namespace Endless_runing
 
         private void GameEngine(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+
+            Canvas.SetLeft(background, Canvas.GetLeft(background) - 3);
+            Canvas.SetLeft(background2, Canvas.GetLeft(background2) - 3);
+
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.Enter && gameOver == true)
+            {
+                StartGame();
+            }
 
         }
 
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
+            if (e.Key == Key.Space && jumping == true && Canvas.GetTop(player) > 260)
+            {
+                jumping = true;
+                force = 15;
+                speed = -12;
 
+                playerSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/newRunner_02.gif"));
+            }
         }
 
          private void StartGame()
@@ -96,15 +110,22 @@ namespace Endless_runing
             Canvas.SetLeft(player, 110);
             Canvas.SetTop(player, 310);
 
+            Canvas.SetLeft(obstacle, 950);
+            Canvas.SetLeft(obstacle, 310);
+
             RunSprits(1);
 
-            obstacleSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,image/obstacle.gif"));
+            obstacleSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/obstacle.png"));
             obstacle.Fill = obstacleSprite;
 
              jumping = false;
              gameOver = false;
 
              score = 0;
+
+            ScoreText.Content = "score " + score;
+
+            gameTimer.Start();
 
 
 
@@ -114,7 +135,35 @@ namespace Endless_runing
 
         private void RunSprits(double i)
         {
+            switch (i)
+            {
+                case 1:
+                    playerSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/newRunner_01.gif"));
+                    break;
+                case 2:
+                    playerSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/newRunner_02.gif"));
+                    break;
+                case 3:
+                    playerSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/newRunner_03.gif"));
+                    break;
+                case 4:
+                    playerSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/newRunner_04.gif"));
+                    break;
+                case 5:
+                    playerSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/newRunner_05.gif"));
+                    break;
+                case 6:
+                    playerSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/newRunner_06.gif"));
+                    break;
+                case 7:
+                    playerSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/newRunner_07.gif"));
+                    break;
+                case 8:
+                    playerSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/newRunner_08.gif"));
+                    break;
+            }
 
+            player.Fill = playerSprite;
         }
     }
 }
