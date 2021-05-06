@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Endless_runing"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Canvas Name="MyCanvas" Focusable="True" KeyDown="KeyIsDown" KeyUp="KeyIsUp" Background="LightBlue">
 
         <Rectangle Name="background" Height="400" Width="1262" Fill="Orange" Canvas.Left="0" />
