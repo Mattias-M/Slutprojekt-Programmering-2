@@ -32,23 +32,27 @@ namespace Endless_runing
         Rect groundHitBox;
         Rect obstacleHitBox;
 
-     
+     // variabel för hoppa
         bool jumping;
 
         // int tal som sepifiserar 
         int force = 20;
         int speed = 5;
 
+        //denna raden kod gör så en variablen rnd för random som arver från kalssen Random
         Random rnd = new Random();
 
+        // en bool som anväds för se om spelet är slut eller inte
         bool gameOver;
 
         double spriteIndex = 0;
+        
 
         ImageBrush playerSprite = new ImageBrush();
         ImageBrush backgrundSprite = new ImageBrush();
         ImageBrush obstacleSprite = new ImageBrush();
 
+        // en lista över vilken posioon obejektet kan läggas ut.
         int[] obstacalePostive = { 320 ,310 ,300, 315};
 
         int score = 0;
@@ -57,7 +61,7 @@ namespace Endless_runing
 
 
         /// <summary>
-        /// Denna metoden gör en klocka 
+        /// Denna metoden gör en klocka som tickar per 20 millisecunder, fyller i bakgeunden med rätt bild och startar spelet.
         /// </summary>
         public MainWindow()
         {
@@ -78,14 +82,18 @@ namespace Endless_runing
 
 
         }
-
+        /// <summary>
+        /// denna metoden gjör de mesta i programer
+        /// </summary>
+        /// <param name="sender"> obejektet </param>
+        /// <param name="e">sender (space)</param>
         private void GameEngine(object sender, EventArgs e)
         {
 
             Canvas.SetLeft(background, Canvas.GetLeft(background) - 5);
             Canvas.SetLeft(background2, Canvas.GetLeft(background2) - 5);
 
-            // dessa två if satserna gjör så att bakgrunderna repeterar, när en av bakgrunderna slutar så böjar nästa
+            // dessa två if satserna gör så att bakgrunderna repeterar, när en av bakgrunderna slutar så böjar nästa
             if (Canvas.GetLeft(background) < -1262)
             {
                 Canvas.SetLeft(background, Canvas.GetLeft(background2) + background2.Width);
@@ -99,8 +107,10 @@ namespace Endless_runing
             // flyttar spelaren med den hastighet den har
             Canvas.SetTop(player, Canvas.GetTop(player) + speed);
 
+            // sätter ut den försat hindret
             Canvas.SetLeft(obstacle, Canvas.GetLeft(obstacle) - 12);
 
+            //gör så textbloxket visar texten score och viblern scor som är ett ental.
             ScoreText.Content = "Score: " + score;
 
             // gör storleken på hitboxerna 
@@ -108,7 +118,7 @@ namespace Endless_runing
             obstacleHitBox = new Rect(Canvas.GetLeft(obstacle), Canvas.GetTop(obstacle), obstacle.Width - 15, obstacle.Height);
             groundHitBox = new Rect(Canvas.GetLeft(ground), Canvas.GetTop(ground), ground.Width - 15, ground.Height);
 
-            // gör så när spelaren träffar boxen så stannar spelranen.
+            // gör så när spelaren träffar marken så hoppar man inte och sprintindex lägger på 0.5 när spelaren är på märken.
             if (playerHitBox.IntersectsWith(groundHitBox))
             {
                 speed = 0;
@@ -119,13 +129,14 @@ namespace Endless_runing
 
                 spriteIndex += .5;
 
-                // när man har dött så stannar animationen på spelaren
+                // när spriteIndex blir mer än 8 så bliir den 1. detta gör så när spelaren är på marken blir det en loop från1 till 8
                 if (spriteIndex > 8)
                 {
                     spriteIndex = 1;
 
                 }
 
+                // sickar intal mellan 1-8 till metoden RunSprints
                 RunSprits(spriteIndex);
 
             }
@@ -143,7 +154,7 @@ namespace Endless_runing
                 speed = 12;
             }
             
-            // om man inte hoppar så är man mpå marken
+            // om man är på marken så hoppar man inte
             if (force < 0)
             {
                 jumping = false;
@@ -176,7 +187,7 @@ namespace Endless_runing
 
                 player.Stroke = Brushes.Red;
                 player.StrokeThickness = 1;
-
+                //man har kan spela om när man klickar på enter.
                 ScoreText.Content = "Score: " + score + "press ENTER to play again";
 
             }
@@ -191,8 +202,8 @@ namespace Endless_runing
         /// <summary>
         /// när man har förlorat och klickar på enter så startarsom spelet.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">obejektet</param>
+        /// <param name="e">  sender (enter)</param>
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter && gameOver == true)
@@ -214,6 +225,7 @@ namespace Endless_runing
                 force = 15;
                 speed = -12;
 
+                // ändrar bilden på spelaren
                 playerSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/newRunner_02.gif"));
             }
         }
@@ -241,7 +253,7 @@ namespace Endless_runing
             obstacleSprite.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/obstacle.png"));
             obstacle.Fill = obstacleSprite;
 
-            
+            // gör så man inte hoppar när man böjar och att man inte har förlorat.
              jumping = false;
              gameOver = false;
 
